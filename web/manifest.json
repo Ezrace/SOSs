@@ -1,11 +1,11 @@
 {
-    "name": "sos",
-    "short_name": "sos",
+    "name": "SOSs",
+    "short_name": "SOSs",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "SOSs — Sensory Overwhelm Support System.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

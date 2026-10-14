@@ -1,0 +1,1 @@
+/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Products/Debug/sos.app

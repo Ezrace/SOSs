@@ -1,6 +1,6 @@
-# sos
+# SOSs
 
-A new Flutter project.
+SOSs (Sensory Overwhelm Support System) is a Flutter app designed to provide support during sensory overwhelm.
 
 ## Getting Started
 
