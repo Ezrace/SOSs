@@ -9,12 +9,12 @@
         "packageRef" : {
           "identity" : "flutterframework",
           "kind" : "fileSystem",
-          "location" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework",
+          "location" : "/Users/tszyau/SOSs/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework",
           "name" : "FlutterFramework"
         },
         "state" : {
           "name" : "fileSystem",
-          "path" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework"
+          "path" : "/Users/tszyau/SOSs/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework"
         },
         "subpath" : "flutterframework"
       }
