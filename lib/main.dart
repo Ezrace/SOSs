@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const SOSsApp());
@@ -304,9 +306,44 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+class HistoryStore {
+  static List<Map<String, String>> pastEvents = [];
+
+  // Load past events from SharedPreferences when app starts
+  static Future<void> loadRecords() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? eventsString = prefs.getString('saved_history_events');
+    if (eventsString != null) {
+      try {
+        final List<dynamic> decodedList = jsonDecode(eventsString);
+        pastEvents = decodedList.map((item) => Map<String, String>.from(item)).toList();
+      } catch (e) {
+        // Ignore parse error
+      }
+    }
+  }
+
+  // Save past events to SharedPreferences whenever a new record is added
+  static Future<void> addRecord({required String title, required String detail, required String time}) async {
+    pastEvents.insert(0, {
+      'title': title,
+      'detail': detail,
+      'time': time,
+    });
+
+    final prefs = await SharedPreferences.getInstance();
+    final String encodedList = jsonEncode(pastEvents);
+    await prefs.setString('saved_history_events', encodedList);
+  }
+}
+
 // ==========================================
 // MOOD JOURNAL SCREEN (Fixed)
 // ==========================================
+class JournalDataStore {
+  static List<Map<String, String>> sharedEntries = [];
+}
+
 class MoodJournalScreen extends StatefulWidget {
   const MoodJournalScreen({super.key});
 
@@ -317,9 +354,15 @@ class MoodJournalScreen extends StatefulWidget {
 class _MoodJournalScreenState extends State<MoodJournalScreen> {
   final TextEditingController _journalController = TextEditingController();
   String _selectedMood = '😊 Calm';
-  final List<Map<String, String>> _savedEntries = [];
+  List<Map<String, String>> _savedEntries = [];
 
   final List<String> _moods = ['😊 Calm', '😌 Relaxed', '🌧️ Overwhelmed', '⚡ Anxious', '💪 Strong'];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadEntries();
+  }
 
   @override
   void dispose() {
@@ -327,18 +370,63 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
     super.dispose();
   }
 
+  Future<void> _loadEntries() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? entriesString = prefs.getString('saved_mood_entries');
+    if (entriesString != null) {
+      try {
+        final List<dynamic> decodedList = jsonDecode(entriesString);
+        setState(() {
+          _savedEntries = decodedList.map((item) => Map<String, String>.from(item)).toList();
+        });
+      } catch (e) {
+        // Ignore parse error
+      }
+    }
+  }
+
+  Future<void> _saveEntriesToPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String encodedList = jsonEncode(_savedEntries);
+    await prefs.setString('saved_mood_entries', encodedList);
+  }
+
   void _saveEntry() {
-    if (_journalController.text.trim().isEmpty) return;
+    final journalText = _journalController.text.trim();
+    if (journalText.isEmpty) return;
+    final timeStr = DateTime.now().toString().substring(0, 16);
+
     setState(() {
       _savedEntries.insert(0, {
         'mood': _selectedMood,
-        'text': _journalController.text.trim(),
-        'time': DateTime.now().toString().substring(0, 16),
+        'text': journalText,
+        'time': timeStr,
       });
       _journalController.clear();
     });
+
+    _saveEntriesToPrefs();
+
+    HistoryStore.addRecord(
+      title: 'Mood Journal: $_selectedMood',
+      detail: journalText,
+      time: timeStr,
+    );
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Journal entry saved successfully!')),
+    );
+  }
+
+  // Function to delete an entry by index
+  void _deleteEntry(int index) {
+    setState(() {
+      _savedEntries.removeAt(index);
+    });
+    _saveEntriesToPrefs();
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Journal entry deleted.')),
     );
   }
 
@@ -442,9 +530,23 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
                                         entry['mood']!,
                                         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                                       ),
-                                      Text(
-                                        entry['time']!,
-                                        style: const TextStyle(color: Colors.grey, fontSize: 12),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            entry['time']!,
+                                            style: const TextStyle(color: Colors.grey, fontSize: 12),
+                                          ),
+                                          const SizedBox(width: 8),
+                                          // Delete icon button added here
+                                          InkWell(
+                                            onTap: () => _deleteEntry(index),
+                                            child: const Icon(
+                                              Icons.delete_outline_rounded,
+                                              size: 18,
+                                              color: Colors.redAccent,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -464,7 +566,6 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
     );
   }
 }
-
 // ==========================================
 // SCENERY SPOTS SCREEN
 // ==========================================
@@ -499,7 +600,7 @@ class ScenerySpotsScreen extends StatelessWidget {
       title: 'Ha Pak Nai',
       location: 'Lau Fau Shan, Yuen Long',
       description: 'Famous sunset spot known as the "Mirror of the Sky" with stunning tidal flats and reflections.',
-      bestTime: '1 hour before sunset (Low tide preferred)',
+      bestTime: 'before sunset',
       icon: Icons.wb_sunny_rounded,
     ),
     SunsetSpot(
@@ -577,31 +678,48 @@ class ScenerySpotsScreen extends StatelessWidget {
                             color: Color(0xFF4A2631),
                           ),
                         ),
-                        const SizedBox(height: 4),
-                        Row(
+                        const SizedBox(height: 6),
+                        
+                        // Uses Wrap to prevent horizontal overflow[cite: 1]
+                        Wrap(
+                          spacing: 12,
+                          runSpacing: 4,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
-                            const Icon(Icons.place, size: 14, color: Color(0xFFA1304B)),
-                            const SizedBox(width: 4),
-                            Text(
-                              spot.location,
-                              style: const TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFFA1304B),
-                              ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.place, size: 14, color: Color(0xFFA1304B)),
+                                const SizedBox(width: 4),
+                                Flexible(
+                                  child: Text(
+                                    spot.location,
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                      color: Color(0xFFA1304B),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 12),
-                            const Icon(Icons.access_time, size: 14, color: Color(0xFF765D64)),
-                            const SizedBox(width: 4),
-                            Text(
-                              spot.bestTime,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: Color(0xFF765D64),
-                              ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.access_time, size: 14, color: Color(0xFF765D64)),
+                                const SizedBox(width: 4),
+                                Text(
+                                  spot.bestTime,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Color(0xFF765D64),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
+
                         const SizedBox(height: 8),
                         Text(
                           spot.description,
@@ -747,6 +865,14 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
   @override
   void initState() {
     super.initState();
+
+    final timeStr = DateTime.now().toString().substring(0, 16);
+    HistoryStore.addRecord(
+      title: 'Calm Mode Active: ${widget.need}',
+      detail: 'Triggered because ${widget.detail}. Applied lighting and brown noise adjustments.',
+      time: timeStr,
+    );
+
     _quoteTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
       setState(() {
         _currentQuoteIndex = (_currentQuoteIndex + 1) % EncouragementNotificationManager.encouragementSentences.length;
@@ -776,7 +902,7 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
         title: const Text('Calm Mode Active'),
       ),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView( // <-- Wrapped in SingleChildScrollView to prevent vertical overflow
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
@@ -855,11 +981,13 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
                               size: 22,
                             ),
                             const SizedBox(width: 10),
-                            Text(
-                              item,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Color(0xFF2D3B5C),
+                            Expanded( // <-- Prevent text overflow inside adjustment row
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xFF2D3B5C),
+                                ),
                               ),
                             ),
                           ],
@@ -869,7 +997,7 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
                   ],
                 ),
               ),
-              const Spacer(),
+              const SizedBox(height: 30),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -1295,85 +1423,96 @@ class _PreferenceListState extends State<_PreferenceList> {
   }
 }
 
-class HistoryScreen extends StatelessWidget {
+class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final events = [
-      {
-        'date': '2 Apr 2025, 14:32',
-        'trigger': 'Too noisy',
-        'mode': 'Calm mode',
-        'support': 'Light + Sound',
-      },
-      {
-        'date': '29 Mar 2025, 18:10',
-        'trigger': 'Too bright',
-        'mode': 'Calm mode',
-        'support': 'Dim light',
-      },
-      {
-        'date': '23 Mar 2025, 09:47',
-        'trigger': 'Too crowded',
-        'mode': 'Quiet room',
-        'support': 'Space + soft audio',
-      },
-    ];
+  State<HistoryScreen> createState() => _HistoryScreenState();
+}
 
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          leading: const BackButton(),
-          title: const Text('History'),
-          bottom: const TabBar(
-            tabs: [
-              Tab(text: 'Support Events'),
-              Tab(text: 'Triggers'),
-              Tab(text: 'Strategies'),
-            ],
-          ),
-        ),
-        body: TabBarView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: ListView.builder(
-                itemCount: events.length,
-                itemBuilder: (context, index) {
-                  final event = events[index];
-                  return Card(
-                    margin: const EdgeInsets.only(bottom: 14),
-                    child: ListTile(
-                      title: Text(
-                        event['date']!,
-                        style: const TextStyle(fontWeight: FontWeight.w700),
+class _HistoryScreenState extends State<HistoryScreen> {
+  List<Map<String, String>> _allEvents = [];
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadHistory();
+  }
+
+  Future<void> _loadHistory() async {
+    await HistoryStore.loadRecords();
+    setState(() {
+      _allEvents = HistoryStore.pastEvents;
+      _isLoading = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: const BackButton(),
+        title: const Text('Past Events & History'),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : _allEvents.isEmpty
+                  ? const Center(
+                      child: Text(
+                        'No past events yet.\nYour Calm Mode activations and Mood Journal entries will appear here.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.grey, fontSize: 15),
                       ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 6),
-                          Text(
-                            event['trigger']!,
-                            style: const TextStyle(fontSize: 18),
+                    )
+                  : ListView.builder(
+                      itemCount: _allEvents.length,
+                      itemBuilder: (context, index) {
+                        final event = _allEvents[index];
+                        return Card(
+                          margin: const EdgeInsets.only(bottom: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
                           ),
-                          Text('Support mode: ${event['mode']}'),
-                          Text(
-                            'Environmental adjustments: ${event['support']}',
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        event['title']!,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                          color: Color(0xFFA1304B),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      event['time']!,
+                                      style: const TextStyle(color: Colors.grey, fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  event['detail']!,
+                                  style: const TextStyle(fontSize: 14, color: Color(0xFF4A2631)),
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () {},
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
-            ),
-            const Center(child: Text('Trigger summaries will appear here.')),
-            const Center(child: Text('Helpful strategies will appear here.')),
-          ],
         ),
       ),
     );
