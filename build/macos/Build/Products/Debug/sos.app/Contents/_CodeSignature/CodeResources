@@ -16,6 +16,14 @@
 		<data>
 		Ap1BYQAxHfKfceVE7hVZIpxzoFU=
 		</data>
+		<key>Resources/shared_preferences_foundation_shared_preferences_foundation.bundle/Contents/Info.plist</key>
+		<data>
+		IQxHlKQ493eSvft05D6h5T42lpM=
+		</data>
+		<key>Resources/shared_preferences_foundation_shared_preferences_foundation.bundle/Contents/Resources/PrivacyInfo.xcprivacy</key>
+		<data>
+		6uLTlq7fgHHWA8emYDf4ImHC+AY=
+		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
@@ -23,37 +31,37 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			EldsdUXNnRbX/Xny+ceC9rv6DAs=
+			WKUdW0zeeWdNdH5IdPUz16O/EH8=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"12576c7545cd9d16d7fd79f2f9c782f6bbfa0c0b"</string>
+			<string>cdhash H"58a51d5b4cde79674d747e4874f533d7a3bf107f"</string>
 		</dict>
 		<key>Frameworks/FlutterMacOS.framework</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			Hse5yqtHBBSedmEqj3zCG8zJdYg=
+			wZq1gM/Pnoz2XYP7ubzzU0lqb9Q=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"1ec7b9caab4704149e76612a8f7cc21bccc97588"</string>
+			<string>cdhash H"c19ab580cfcf9e8cf65d83fbb9bcf353496a6fd4"</string>
 		</dict>
 		<key>MacOS/__preview.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			eUSc2unNuDvrFCfzlDtHtNXAOZU=
+			mlp+QJ4wCMJj/9cA+p89cPF83y4=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"79449cdae9cdb83beb1427f3943b47b4d5c03995"</string>
+			<string>cdhash H"9a5a7e409e3008c263ffd700fa9f3d70f17cdf2e"</string>
 		</dict>
 		<key>MacOS/sos.debug.dylib</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			dc3cpxkg4Fy2ZMJz2/yPe7gODFM=
+			N/TRje+omnY5yyCm1Z9/dQKvhRo=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"75cddca71920e05cb664c273dbfc8f7bb80e0c53"</string>
+			<string>cdhash H"37f4d18defa89a7639cb20a6d59f7f7502af851a"</string>
 		</dict>
 		<key>Resources/AppIcon.icns</key>
 		<dict>
@@ -74,6 +82,20 @@
 			<key>hash2</key>
 			<data>
 			KAth+/BIIJeT9dHh6tes6q9tI+952fw3UYYwl6fotf0=
+			</data>
+		</dict>
+		<key>Resources/shared_preferences_foundation_shared_preferences_foundation.bundle/Contents/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			kh2hhnQLYIDtzwIHz5lpaOjHv8837nBDpDoKoY0Hc6I=
+			</data>
+		</dict>
+		<key>Resources/shared_preferences_foundation_shared_preferences_foundation.bundle/Contents/Resources/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			BWQouTi9VwGKYAGdFcPB7i+nJ/I2h1mLu9k0hIsYCxo=
 			</data>
 		</dict>
 	</dict>

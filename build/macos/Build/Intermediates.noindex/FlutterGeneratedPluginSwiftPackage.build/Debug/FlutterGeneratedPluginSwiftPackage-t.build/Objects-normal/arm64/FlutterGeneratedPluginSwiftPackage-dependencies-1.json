@@ -21,14 +21,14 @@
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
-    "clangModulePath" : "\/Users\/tszyau\/SOSs\/build\/macos\/SDKExplicitPrecompiledModules\/SwiftShims-3ARTIC3FQKITLDKW3FV9D1UJG.pcm",
+    "clangModulePath" : "\/Users\/ezrace\/Desktop\/coding\/GenAI-Hackthon\/SOSs\/build\/macos\/SDKExplicitPrecompiledModules\/SwiftShims-24I7O4AIKQQ2R21VMNUT6R6IP.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "SwiftShims"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
-    "clangModulePath" : "\/Users\/tszyau\/SOSs\/build\/macos\/SDKExplicitPrecompiledModules\/_SwiftConcurrencyShims-EBC0UPG7OM5P5DQS2ZMU3L0BK.pcm",
+    "clangModulePath" : "\/Users\/ezrace\/Desktop\/coding\/GenAI-Hackthon\/SOSs\/build\/macos\/SDKExplicitPrecompiledModules\/_SwiftConcurrencyShims-CCB9TIPOL4ZMNQVDYOW0B83LN.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_SwiftConcurrencyShims"

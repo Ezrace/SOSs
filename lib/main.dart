@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -154,15 +155,15 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 14),
               const _MiniTaskWidget(),
               const SizedBox(height: 14),
-              
-              // Mood Journal Button
+
+              // Sensory Journal Button
               InkWell(
                 borderRadius: BorderRadius.circular(19),
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const MoodJournalScreen(),
+                      builder: (_) => const SensoryJournalScreen(),
                     ),
                   );
                 },
@@ -177,14 +178,18 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: const Row(
                     children: [
-                      Icon(Icons.edit_note_rounded, color: Color(0xFF5669D9), size: 28),
+                      Icon(
+                        Icons.edit_note_rounded,
+                        color: Color(0xFF5669D9),
+                        size: 28,
+                      ),
                       SizedBox(width: 14),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Mood Journal',
+                              'Sensory Journal',
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
@@ -194,12 +199,19 @@ class HomeScreen extends StatelessWidget {
                             SizedBox(height: 2),
                             Text(
                               'Write down your thoughts and feelings',
-                              style: TextStyle(fontSize: 12, color: Color(0xFF4A5772)),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xFF4A5772),
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      Icon(Icons.arrow_forward_ios, size: 16, color: Color(0xFF5669D9)),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16,
+                        color: Color(0xFF5669D9),
+                      ),
                     ],
                   ),
                 ),
@@ -228,7 +240,11 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: const Row(
                     children: [
-                      Icon(Icons.wb_sunny_rounded, color: Color(0xFFA1304B), size: 28),
+                      Icon(
+                        Icons.wb_sunny_rounded,
+                        color: Color(0xFFA1304B),
+                        size: 28,
+                      ),
                       SizedBox(width: 14),
                       Expanded(
                         child: Column(
@@ -245,12 +261,19 @@ class HomeScreen extends StatelessWidget {
                             SizedBox(height: 2),
                             Text(
                               'Find a peaceful seaside to unwind',
-                              style: TextStyle(fontSize: 12, color: Color(0xFF765D64)),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xFF765D64),
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      Icon(Icons.arrow_forward_ios, size: 16, color: Color(0xFFA1304B)),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16,
+                        color: Color(0xFFA1304B),
+                      ),
                     ],
                   ),
                 ),
@@ -316,7 +339,9 @@ class HistoryStore {
     if (eventsString != null) {
       try {
         final List<dynamic> decodedList = jsonDecode(eventsString);
-        pastEvents = decodedList.map((item) => Map<String, String>.from(item)).toList();
+        pastEvents = decodedList
+            .map((item) => Map<String, String>.from(item))
+            .toList();
       } catch (e) {
         // Ignore parse error
       }
@@ -324,12 +349,12 @@ class HistoryStore {
   }
 
   // Save past events to SharedPreferences whenever a new record is added
-  static Future<void> addRecord({required String title, required String detail, required String time}) async {
-    pastEvents.insert(0, {
-      'title': title,
-      'detail': detail,
-      'time': time,
-    });
+  static Future<void> addRecord({
+    required String title,
+    required String detail,
+    required String time,
+  }) async {
+    pastEvents.insert(0, {'title': title, 'detail': detail, 'time': time});
 
     final prefs = await SharedPreferences.getInstance();
     final String encodedList = jsonEncode(pastEvents);
@@ -338,25 +363,31 @@ class HistoryStore {
 }
 
 // ==========================================
-// MOOD JOURNAL SCREEN (Fixed)
+// SENSORY JOURNAL SCREEN (Fixed)
 // ==========================================
 class JournalDataStore {
   static List<Map<String, String>> sharedEntries = [];
 }
 
-class MoodJournalScreen extends StatefulWidget {
-  const MoodJournalScreen({super.key});
+class SensoryJournalScreen extends StatefulWidget {
+  const SensoryJournalScreen({super.key});
 
   @override
-  State<MoodJournalScreen> createState() => _MoodJournalScreenState();
+  State<SensoryJournalScreen> createState() => _SensoryJournalScreenState();
 }
 
-class _MoodJournalScreenState extends State<MoodJournalScreen> {
+class _SensoryJournalScreenState extends State<SensoryJournalScreen> {
   final TextEditingController _journalController = TextEditingController();
   String _selectedMood = '😊 Calm';
   List<Map<String, String>> _savedEntries = [];
 
-  final List<String> _moods = ['😊 Calm', '😌 Relaxed', '🌧️ Overwhelmed', '⚡ Anxious', '💪 Strong'];
+  final List<String> _moods = [
+    '😊 Calm',
+    '😌 Relaxed',
+    '🌧️ Overwhelmed',
+    '⚡ Anxious',
+    '💪 Strong',
+  ];
 
   @override
   void initState() {
@@ -377,7 +408,9 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
       try {
         final List<dynamic> decodedList = jsonDecode(entriesString);
         setState(() {
-          _savedEntries = decodedList.map((item) => Map<String, String>.from(item)).toList();
+          _savedEntries = decodedList
+              .map((item) => Map<String, String>.from(item))
+              .toList();
         });
       } catch (e) {
         // Ignore parse error
@@ -408,7 +441,7 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
     _saveEntriesToPrefs();
 
     HistoryStore.addRecord(
-      title: 'Mood Journal: $_selectedMood',
+      title: 'Sensory Journal: $_selectedMood',
       detail: journalText,
       time: timeStr,
     );
@@ -425,9 +458,8 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
     });
     _saveEntriesToPrefs();
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Journal entry deleted.')),
-    );
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Journal entry deleted.')));
   }
 
   @override
@@ -435,7 +467,7 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: const Text('Mood Journal'),
+        title: const Text('Sensory Journal'),
       ),
       body: SafeArea(
         child: Padding(
@@ -445,7 +477,11 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
             children: [
               const Text(
                 'How are you feeling right now?',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Color(0xFF1E3354)),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF1E3354),
+                ),
               ),
               const SizedBox(height: 10),
               SingleChildScrollView(
@@ -501,7 +537,11 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
               const SizedBox(height: 20),
               const Text(
                 'Recent Entries',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Color(0xFF1E3354)),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF1E3354),
+                ),
               ),
               const SizedBox(height: 10),
               Expanded(
@@ -524,17 +564,24 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         entry['mood']!,
-                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
                                       ),
                                       Row(
                                         children: [
                                           Text(
                                             entry['time']!,
-                                            style: const TextStyle(color: Colors.grey, fontSize: 12),
+                                            style: const TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 12,
+                                            ),
                                           ),
                                           const SizedBox(width: 8),
                                           // Delete icon button added here
@@ -566,6 +613,7 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
     );
   }
 }
+
 // ==========================================
 // SCENERY SPOTS SCREEN
 // ==========================================
@@ -663,7 +711,11 @@ class ScenerySpotsScreen extends StatelessWidget {
                       color: const Color(0xFFF6DCE4),
                       borderRadius: BorderRadius.circular(14),
                     ),
-                    child: Icon(spot.icon, color: const Color(0xFFA1304B), size: 28),
+                    child: Icon(
+                      spot.icon,
+                      color: const Color(0xFFA1304B),
+                      size: 28,
+                    ),
                   ),
                   const SizedBox(width: 14),
                   Expanded(
@@ -679,7 +731,7 @@ class ScenerySpotsScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 6),
-                        
+
                         // Uses Wrap to prevent horizontal overflow[cite: 1]
                         Wrap(
                           spacing: 12,
@@ -689,7 +741,11 @@ class ScenerySpotsScreen extends StatelessWidget {
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Icon(Icons.place, size: 14, color: Color(0xFFA1304B)),
+                                const Icon(
+                                  Icons.place,
+                                  size: 14,
+                                  color: Color(0xFFA1304B),
+                                ),
                                 const SizedBox(width: 4),
                                 Flexible(
                                   child: Text(
@@ -706,7 +762,11 @@ class ScenerySpotsScreen extends StatelessWidget {
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Icon(Icons.access_time, size: 14, color: Color(0xFF765D64)),
+                                const Icon(
+                                  Icons.access_time,
+                                  size: 14,
+                                  color: Color(0xFF765D64),
+                                ),
                                 const SizedBox(width: 4),
                                 Text(
                                   spot.bestTime,
@@ -869,13 +929,16 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
     final timeStr = DateTime.now().toString().substring(0, 16);
     HistoryStore.addRecord(
       title: 'Calm Mode Active: ${widget.need}',
-      detail: 'Triggered because ${widget.detail}. Applied lighting and brown noise adjustments.',
+      detail:
+          'Triggered because ${widget.detail}. Applied lighting and brown noise adjustments.',
       time: timeStr,
     );
 
     _quoteTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
       setState(() {
-        _currentQuoteIndex = (_currentQuoteIndex + 1) % EncouragementNotificationManager.encouragementSentences.length;
+        _currentQuoteIndex =
+            (_currentQuoteIndex + 1) %
+            EncouragementNotificationManager.encouragementSentences.length;
       });
     });
   }
@@ -894,7 +957,8 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
       'Brown noise playing',
     ];
 
-    final currentQuote = EncouragementNotificationManager.encouragementSentences[_currentQuoteIndex];
+    final currentQuote = EncouragementNotificationManager
+        .encouragementSentences[_currentQuoteIndex];
 
     return Scaffold(
       appBar: AppBar(
@@ -902,7 +966,8 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
         title: const Text('Calm Mode Active'),
       ),
       body: SafeArea(
-        child: SingleChildScrollView( // <-- Wrapped in SingleChildScrollView to prevent vertical overflow
+        child: SingleChildScrollView(
+          // <-- Wrapped in SingleChildScrollView to prevent vertical overflow
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
@@ -917,13 +982,16 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              
+
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 600),
                 child: Container(
                   key: ValueKey<int>(_currentQuoteIndex),
                   width: double.infinity,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 14,
+                  ),
                   decoration: BoxDecoration(
                     color: const Color(0xFFF0F4FF),
                     borderRadius: BorderRadius.circular(16),
@@ -931,7 +999,11 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.auto_awesome, color: Color(0xFF5669D9), size: 20),
+                      const Icon(
+                        Icons.auto_awesome,
+                        color: Color(0xFF5669D9),
+                        size: 20,
+                      ),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
@@ -948,7 +1020,7 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              
+
               const _MiniTaskWidget(),
               const SizedBox(height: 20),
               Container(
@@ -981,7 +1053,8 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
                               size: 22,
                             ),
                             const SizedBox(width: 10),
-                            Expanded( // <-- Prevent text overflow inside adjustment row
+                            Expanded(
+                              // <-- Prevent text overflow inside adjustment row
                               child: Text(
                                 item,
                                 style: const TextStyle(
@@ -1155,7 +1228,11 @@ class _RandomMiniTaskScreen extends StatelessWidget {
                   color: Color(0xFFEAF1FF),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(task.icon, size: 54, color: const Color(0xFF5669D9)),
+                child: Icon(
+                  task.icon,
+                  size: 54,
+                  color: const Color(0xFF5669D9),
+                ),
               ),
               const SizedBox(height: 24),
               Text(
@@ -1344,6 +1421,7 @@ class SupportPreferencesScreen extends StatelessWidget {
         body: const TabBarView(
           children: [
             _PreferenceList(
+              storageKey: 'triggers',
               items: [
                 'Loud sounds',
                 'Bright lights',
@@ -1354,6 +1432,7 @@ class SupportPreferencesScreen extends StatelessWidget {
               values: {},
             ),
             _PreferenceList(
+              storageKey: 'strategies',
               items: [
                 'Quiet room',
                 'Warm lighting',
@@ -1363,6 +1442,7 @@ class SupportPreferencesScreen extends StatelessWidget {
               values: {},
             ),
             _PreferenceList(
+              storageKey: 'caregiver',
               items: [
                 'Give me space',
                 'Avoid questions',
@@ -1379,8 +1459,13 @@ class SupportPreferencesScreen extends StatelessWidget {
 }
 
 class _PreferenceList extends StatefulWidget {
-  const _PreferenceList({required this.items, required this.values});
+  const _PreferenceList({
+    required this.storageKey,
+    required this.items,
+    this.values = const {},
+  });
 
+  final String storageKey;
   final List<String> items;
   final Map<String, bool> values;
 
@@ -1392,9 +1477,35 @@ class _PreferenceListState extends State<_PreferenceList> {
   late final Map<String, bool> state = {
     for (final item in widget.items) item: widget.values[item] ?? false,
   };
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPreferences();
+  }
+
+  Future<void> _loadPreferences() async {
+    final saved = await SupportPreferencesStore.load(widget.storageKey);
+    if (!mounted) return;
+    setState(() {
+      for (final item in widget.items) {
+        state[item] = saved[item] ?? state[item] ?? false;
+      }
+      _isLoading = false;
+    });
+  }
+
+  Future<void> _savePreferences() async {
+    await SupportPreferencesStore.save(widget.storageKey, state);
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return Padding(
       padding: const EdgeInsets.all(20),
       child: ListView.builder(
@@ -1409,6 +1520,7 @@ class _PreferenceListState extends State<_PreferenceList> {
                 setState(() {
                   state[item] = value ?? false;
                 });
+                _savePreferences();
               },
               title: Text(item),
               contentPadding: const EdgeInsets.symmetric(
@@ -1420,6 +1532,25 @@ class _PreferenceListState extends State<_PreferenceList> {
         },
       ),
     );
+  }
+}
+
+class SupportPreferencesStore {
+  static const _keyPrefix = 'support_preferences_';
+
+  static Future<Map<String, bool>> load(String category) async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getStringList('$_keyPrefix$category') ?? const [];
+    return {for (final item in saved) item: true};
+  }
+
+  static Future<void> save(String category, Map<String, bool> values) async {
+    final prefs = await SharedPreferences.getInstance();
+    final selected = values.entries
+        .where((entry) => entry.value)
+        .map((entry) => entry.key)
+        .toList();
+    await prefs.setStringList('$_keyPrefix$category', selected);
   }
 }
 
@@ -1461,58 +1592,64 @@ class _HistoryScreenState extends State<HistoryScreen> {
           child: _isLoading
               ? const Center(child: CircularProgressIndicator())
               : _allEvents.isEmpty
-                  ? const Center(
-                      child: Text(
-                        'No past events yet.\nYour Calm Mode activations and Mood Journal entries will appear here.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.grey, fontSize: 15),
+              ? const Center(
+                  child: Text(
+                    'No past events yet.\nYour Calm Mode activations and Sensory Journal entries will appear here.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.grey, fontSize: 15),
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: _allEvents.length,
+                  itemBuilder: (context, index) {
+                    final event = _allEvents[index];
+                    return Card(
+                      margin: const EdgeInsets.only(bottom: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                    )
-                  : ListView.builder(
-                      itemCount: _allEvents.length,
-                      itemBuilder: (context, index) {
-                        final event = _allEvents[index];
-                        return Card(
-                          margin: const EdgeInsets.only(bottom: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        event['title']!,
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                          color: Color(0xFFA1304B),
-                                        ),
-                                      ),
+                                Expanded(
+                                  child: Text(
+                                    event['title']!,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      color: Color(0xFFA1304B),
                                     ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      event['time']!,
-                                      style: const TextStyle(color: Colors.grey, fontSize: 12),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                                const SizedBox(height: 8),
+                                const SizedBox(width: 8),
                                 Text(
-                                  event['detail']!,
-                                  style: const TextStyle(fontSize: 14, color: Color(0xFF4A2631)),
+                                  event['time']!,
+                                  style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
-                        );
-                      },
-                    ),
+                            const SizedBox(height: 8),
+                            Text(
+                              event['detail']!,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF4A2631),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
         ),
       ),
     );

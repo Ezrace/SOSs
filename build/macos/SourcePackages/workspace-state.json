@@ -9,14 +9,28 @@
         "packageRef" : {
           "identity" : "flutterframework",
           "kind" : "fileSystem",
-          "location" : "/Users/tszyau/SOSs/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework",
+          "location" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework",
           "name" : "FlutterFramework"
         },
         "state" : {
           "name" : "fileSystem",
-          "path" : "/Users/tszyau/SOSs/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework"
+          "path" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework"
         },
         "subpath" : "flutterframework"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "shared_preferences_foundation-2.5.7",
+          "kind" : "fileSystem",
+          "location" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/macos/Flutter/ephemeral/Packages/.packages/shared_preferences_foundation-2.5.7",
+          "name" : "shared_preferences_foundation"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/macos/Flutter/ephemeral/Packages/.packages/shared_preferences_foundation-2.5.7"
+        },
+        "subpath" : "shared_preferences_foundation-2.5.7"
       }
     ],
     "prebuilts" : [

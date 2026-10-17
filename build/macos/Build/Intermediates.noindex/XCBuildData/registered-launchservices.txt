@@ -2,3 +2,4 @@
 /Users/tszyau/SOSs/build/macos/Build/Products/Debug/sos.app
 /Users/tszyau/SOSs/build/macos/Build/Products/Profile/sos.app
 /Users/tszyau/SOSs/build/macos/Build/Products/Debug/sos.app
+/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Products/Debug/sos.app

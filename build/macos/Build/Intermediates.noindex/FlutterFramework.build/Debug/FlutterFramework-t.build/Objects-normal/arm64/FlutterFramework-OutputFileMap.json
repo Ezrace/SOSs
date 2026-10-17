@@ -1,19 +1,19 @@
 {
   "" : {
-    "diagnostics" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework-primary.dia",
-    "emit-module-dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework-primary-emit-module.d",
-    "emit-module-diagnostics" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework-primary-emit-module.dia",
-    "pch" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework-primary-Bridging-header.pch",
-    "swift-dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework-primary.swiftdeps"
+    "diagnostics" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework-primary.dia",
+    "emit-module-dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework-primary-emit-module.dia",
+    "pch" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework-primary.swiftdeps"
   },
-  "/Users/tszyau/SOSs/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework/Sources/FlutterFramework/FlutterFramework.swift" : {
-    "const-values" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.swiftconstvalues",
-    "dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.d",
-    "diagnostics" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.dia",
+  "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework/Sources/FlutterFramework/FlutterFramework.swift" : {
+    "const-values" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.swiftconstvalues",
+    "dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.d",
+    "diagnostics" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.dia",
     "index-unit-output-path" : "/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.o",
-    "llvm-bc" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.bc",
-    "object" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.o",
-    "swift-dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.swiftdeps",
-    "swiftmodule" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework~partial.swiftmodule"
+    "llvm-bc" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.bc",
+    "object" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.o",
+    "swift-dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework.swiftdeps",
+    "swiftmodule" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/FlutterFramework.build/Debug/FlutterFramework-t.build/Objects-normal/arm64/FlutterFramework~partial.swiftmodule"
   }
 }

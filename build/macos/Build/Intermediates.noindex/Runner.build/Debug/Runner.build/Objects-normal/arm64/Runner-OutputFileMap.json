@@ -1,49 +1,49 @@
 {
   "" : {
-    "diagnostics" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/Runner-primary.dia",
-    "emit-module-dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/Runner-primary-emit-module.d",
-    "emit-module-diagnostics" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/Runner-primary-emit-module.dia",
-    "pch" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/Runner-primary-Bridging-header.pch",
-    "swift-dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/Runner-primary.swiftdeps"
+    "diagnostics" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/Runner-primary.dia",
+    "emit-module-dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/Runner-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/Runner-primary-emit-module.dia",
+    "pch" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/Runner-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/Runner-primary.swiftdeps"
   },
-  "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/DerivedSources/GeneratedAssetSymbols.swift" : {
-    "const-values" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
-    "dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
-    "diagnostics" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+  "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
     "index-unit-output-path" : "/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
-    "llvm-bc" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
-    "object" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
-    "swift-dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
-    "swiftmodule" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+    "llvm-bc" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
   },
-  "/Users/tszyau/SOSs/macos/Flutter/GeneratedPluginRegistrant.swift" : {
-    "const-values" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.swiftconstvalues",
-    "dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.d",
-    "diagnostics" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.dia",
+  "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/macos/Flutter/GeneratedPluginRegistrant.swift" : {
+    "const-values" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.swiftconstvalues",
+    "dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.d",
+    "diagnostics" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.dia",
     "index-unit-output-path" : "/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.o",
-    "llvm-bc" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.bc",
-    "object" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.o",
-    "swift-dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.swiftdeps",
-    "swiftmodule" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant~partial.swiftmodule"
+    "llvm-bc" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.bc",
+    "object" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.o",
+    "swift-dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant.swiftdeps",
+    "swiftmodule" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/GeneratedPluginRegistrant~partial.swiftmodule"
   },
-  "/Users/tszyau/SOSs/macos/Runner/AppDelegate.swift" : {
-    "const-values" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.swiftconstvalues",
-    "dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.d",
-    "diagnostics" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.dia",
+  "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/macos/Runner/AppDelegate.swift" : {
+    "const-values" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.swiftconstvalues",
+    "dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.d",
+    "diagnostics" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.dia",
     "index-unit-output-path" : "/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.o",
-    "llvm-bc" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.bc",
-    "object" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.o",
-    "swift-dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.swiftdeps",
-    "swiftmodule" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate~partial.swiftmodule"
+    "llvm-bc" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.bc",
+    "object" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.o",
+    "swift-dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate.swiftdeps",
+    "swiftmodule" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/AppDelegate~partial.swiftmodule"
   },
-  "/Users/tszyau/SOSs/macos/Runner/MainFlutterWindow.swift" : {
-    "const-values" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.swiftconstvalues",
-    "dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.d",
-    "diagnostics" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.dia",
+  "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/macos/Runner/MainFlutterWindow.swift" : {
+    "const-values" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.swiftconstvalues",
+    "dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.d",
+    "diagnostics" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.dia",
     "index-unit-output-path" : "/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.o",
-    "llvm-bc" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.bc",
-    "object" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.o",
-    "swift-dependencies" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.swiftdeps",
-    "swiftmodule" : "/Users/tszyau/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow~partial.swiftmodule"
+    "llvm-bc" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.bc",
+    "object" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.o",
+    "swift-dependencies" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow.swiftdeps",
+    "swiftmodule" : "/Users/ezrace/Desktop/coding/GenAI-Hackthon/SOSs/build/macos/Build/Intermediates.noindex/Runner.build/Debug/Runner.build/Objects-normal/arm64/MainFlutterWindow~partial.swiftmodule"
   }
 }
