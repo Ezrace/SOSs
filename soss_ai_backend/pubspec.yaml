@@ -1,0 +1,9 @@
+name: soss_ai_backend
+description: Private SOSs sensory analysis backend.
+publish_to: none
+environment:
+  sdk: ^3.13.5
+dependencies:
+  http: ^1.5.0
+  shelf: ^1.4.2
+  shelf_router: ^1.1.4

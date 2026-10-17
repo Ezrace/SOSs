@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'services/sos_ai_service.dart';
+
 void main() {
   runApp(const SOSsApp());
 }
@@ -388,7 +390,6 @@ class _SensoryJournalScreenState extends State<SensoryJournalScreen> {
     '⚡ Anxious',
     '💪 Strong',
   ];
-
   @override
   void initState() {
     super.initState();
@@ -646,7 +647,7 @@ class ScenerySpotsScreen extends StatelessWidget {
     ),
     SunsetSpot(
       title: 'Ha Pak Nai',
-      location: 'Lau Fau Shan, Yuen Long',
+      location: 'Lau Fau Shan',
       description: 'Famous sunset spot known as the "Mirror of the Sky" with stunning tidal flats and reflections.',
       bestTime: 'before sunset',
       icon: Icons.wb_sunny_rounded,
@@ -822,7 +823,7 @@ class SelectNeedScreen extends StatelessWidget {
         'lighting is too intense',
       ),
       (
-        _needLabel('Too crowded'),
+        _needLabel('I am tired'),
         const Color(0xFF77C4B6),
         'too much stimulation around me',
       ),
@@ -1070,7 +1071,19 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 16),
+              OutlinedButton.icon(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        SosAiAnalysisScreen(selectedNeed: widget.need),
+                  ),
+                ),
+                icon: const Icon(Icons.auto_awesome),
+                label: const Text('Personalise support with AI'),
+              ),
+              const Spacer(),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -1091,6 +1104,266 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class SosAiAnalysisScreen extends StatefulWidget {
+  const SosAiAnalysisScreen({
+    super.key,
+    required this.selectedNeed,
+    this.service,
+  });
+
+  final String selectedNeed;
+  final SosAiService? service;
+
+  @override
+  State<SosAiAnalysisScreen> createState() => _SosAiAnalysisScreenState();
+}
+
+class _SosAiAnalysisScreenState extends State<SosAiAnalysisScreen> {
+  late final TextEditingController _noteController;
+  late final SosAiService _service;
+  SosAiAnalysis? _analysis;
+  String? _error;
+  bool _loading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _noteController = TextEditingController();
+    _service =
+        widget.service ??
+        SosAiService(
+          baseUrl: const String.fromEnvironment(
+            'SOS_AI_BASE_URL',
+            defaultValue: 'http://127.0.0.1:8080',
+          ),
+        );
+  }
+
+  @override
+  void dispose() {
+    _noteController.dispose();
+    if (widget.service == null) {
+      _service.dispose();
+    }
+    super.dispose();
+  }
+
+  Future<void> _analyse() async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    setState(() {
+      _loading = true;
+      _error = null;
+      _analysis = null;
+    });
+
+    try {
+      final result = await _service.analyse(
+        note: _noteController.text,
+        selectedNeed: widget.selectedNeed,
+        preferences: const {
+          'preferredLighting': 'warm and dim',
+          'preferredSound': 'quiet',
+          'permittedAdjustments': [
+            'dim_lights',
+            'warm_lights',
+            'lower_media_volume',
+            'give_space',
+            'no_change',
+          ],
+        },
+      );
+      if (!mounted) return;
+      setState(() => _analysis = result);
+    } catch (error) {
+      if (!mounted) return;
+      setState(() => _error = error.toString());
+    } finally {
+      if (mounted) {
+        setState(() => _loading = false);
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: const BackButton(),
+        title: const Text('Personalised Support'),
+      ),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            const Text(
+              'Share what you or a caregiver noticed. The AI will summarise the report and suggest options for review.',
+              style: TextStyle(fontSize: 17, color: Color(0xFF4A5772)),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Selected need: ${widget.selectedNeed}',
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF1E3354),
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _noteController,
+              maxLines: 5,
+              maxLength: 2000,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Example: The caregiver reports that loud kitchen sounds are uncomfortable.',
+                labelText: 'User or caregiver note',
+              ),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: _loading ? null : _analyse,
+                icon: _loading
+                    ? const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.auto_awesome),
+                label: Text(
+                  _loading ? 'Analysing...' : 'Analyse support needs',
+                ),
+              ),
+            ),
+            if (_error != null) ...[
+              const SizedBox(height: 16),
+              _AnalysisMessage(
+                icon: Icons.info_outline,
+                message:
+                    'AI suggestions are unavailable. Your existing support plan remains available.\n$_error',
+              ),
+            ],
+            if (_analysis != null) ...[
+              const SizedBox(height: 20),
+              _AnalysisResultCard(analysis: _analysis!),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _AnalysisMessage extends StatelessWidget {
+  const _AnalysisMessage({required this.icon, required this.message});
+
+  final IconData icon;
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: const Color(0xFFFFF4E5),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, color: const Color(0xFF9A6412)),
+            const SizedBox(width: 10),
+            Expanded(child: Text(message)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _AnalysisResultCard extends StatelessWidget {
+  const _AnalysisResultCard({required this.analysis});
+
+  final SosAiAnalysis analysis;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.auto_awesome, color: Color(0xFF5669D9)),
+                SizedBox(width: 8),
+                Text(
+                  'AI Support Summary',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w800,
+                    color: Color(0xFF1E3354),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(analysis.summary),
+            const SizedBox(height: 14),
+            _AnalysisSection(
+              title: 'Reported triggers',
+              values: analysis.reportedTriggers,
+            ),
+            _AnalysisSection(
+              title: 'Suggested adjustments for review',
+              values: analysis.suggestedAdjustments
+                  .map((action) => action.replaceAll('_', ' '))
+                  .toList(),
+            ),
+            const SizedBox(height: 8),
+            Text('Context: ${analysis.contextSummary}'),
+            const SizedBox(height: 8),
+            Text('Caregiver guidance: ${analysis.caregiverMessage}'),
+            const SizedBox(height: 8),
+            Text('Uncertainty: ${analysis.uncertainty}'),
+            const SizedBox(height: 12),
+            const Text(
+              'No device changes were made. Review these suggestions before taking action.',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Color(0xFFA1304B),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _AnalysisSection extends StatelessWidget {
+  const _AnalysisSection({required this.title, required this.values});
+
+  final String title;
+  final List<String> values;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
+          if (values.isEmpty)
+            const Text('None reported')
+          else
+            ...values.map((value) => Text('• $value')),
+        ],
       ),
     );
   }

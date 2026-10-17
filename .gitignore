@@ -4,6 +4,14 @@
 *.pyc
 *.swp
 .DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key
+*.mobileprovision
+*.cer
 .atom/
 .build/
 .buildlog/
@@ -11,6 +19,7 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+DerivedData/
 
 # IntelliJ related
 *.iml
@@ -28,10 +37,22 @@ migrate_working_dir/
 **/ios/Flutter/.last_build_id
 .dart_tool/
 .flutter-plugins-dependencies
+.flutter-plugins
+.packages
 .pub-cache/
 .pub/
 /build/
 /coverage/
+
+# Local platform configuration and generated native dependencies
+android/.gradle/
+android/local.properties
+ios/Pods/
+ios/Flutter/ephemeral/
+macos/Pods/
+macos/Flutter/ephemeral/
+linux/flutter/ephemeral/
+windows/flutter/ephemeral/
 
 # Symbolication related
 app.*.symbols
