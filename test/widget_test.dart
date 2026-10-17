@@ -6,8 +6,12 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 
 import 'package:sos/main.dart';
+import 'package:sos/services/sos_ai_service.dart';
 
 void main() {
   testWidgets('SOSs app loads the home screen', (WidgetTester tester) async {
@@ -16,5 +20,45 @@ void main() {
     expect(find.text('SOSs'), findsOneWidget);
     expect(find.text('A calmer space, together'), findsOneWidget);
     expect(find.text('How are you feeling today?'), findsOneWidget);
+  });
+
+  testWidgets('AI analysis displays a structured support summary', (
+    WidgetTester tester,
+  ) async {
+    final service = SosAiService(
+      baseUrl: 'http://test',
+      client: MockClient((request) async {
+        expect(request.url.path, '/analyse');
+        return http.Response(
+          '{"summary":"Noise was reported as difficult.",'
+          '"reported_triggers":["Loud sounds"],'
+          '"context_summary":"A caregiver report was provided.",'
+          '"suggested_adjustments":["lower_media_volume","give_space"],'
+          '"caregiver_message":"Reduce sound and offer space.",'
+          '"uncertainty":"The exact source is unknown."}',
+          200,
+        );
+      }),
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: SosAiAnalysisScreen(selectedNeed: 'Too noisy', service: service),
+      ),
+    );
+
+    await tester.enterText(
+      find.byType(TextField),
+      'The caregiver reports that loud kitchen sounds are uncomfortable.',
+    );
+    await tester.tap(find.text('Analyse support needs'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('AI Support Summary'), findsOneWidget);
+    expect(find.text('Noise was reported as difficult.'), findsOneWidget);
+    await tester.ensureVisible(find.text('Suggested adjustments for review'));
+    expect(find.textContaining('lower media volume'), findsOneWidget);
+    expect(find.textContaining('No device changes were made'), findsOneWidget);
+    service.dispose();
   });
 }

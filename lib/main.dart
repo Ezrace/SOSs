@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'dart:math';
+
 import 'package:flutter/material.dart';
+
+import 'services/sos_ai_service.dart';
 
 void main() {
   runApp(const SOSsApp());
@@ -152,7 +155,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 14),
               const _MiniTaskWidget(),
               const SizedBox(height: 14),
-              
+
               // Mood Journal Button
               InkWell(
                 borderRadius: BorderRadius.circular(19),
@@ -175,7 +178,11 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: const Row(
                     children: [
-                      Icon(Icons.edit_note_rounded, color: Color(0xFF5669D9), size: 28),
+                      Icon(
+                        Icons.edit_note_rounded,
+                        color: Color(0xFF5669D9),
+                        size: 28,
+                      ),
                       SizedBox(width: 14),
                       Expanded(
                         child: Column(
@@ -192,12 +199,19 @@ class HomeScreen extends StatelessWidget {
                             SizedBox(height: 2),
                             Text(
                               'Write down your thoughts and feelings',
-                              style: TextStyle(fontSize: 12, color: Color(0xFF4A5772)),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xFF4A5772),
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      Icon(Icons.arrow_forward_ios, size: 16, color: Color(0xFF5669D9)),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16,
+                        color: Color(0xFF5669D9),
+                      ),
                     ],
                   ),
                 ),
@@ -226,7 +240,11 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: const Row(
                     children: [
-                      Icon(Icons.wb_sunny_rounded, color: Color(0xFFA1304B), size: 28),
+                      Icon(
+                        Icons.wb_sunny_rounded,
+                        color: Color(0xFFA1304B),
+                        size: 28,
+                      ),
                       SizedBox(width: 14),
                       Expanded(
                         child: Column(
@@ -243,12 +261,19 @@ class HomeScreen extends StatelessWidget {
                             SizedBox(height: 2),
                             Text(
                               'Find a peaceful seaside to unwind',
-                              style: TextStyle(fontSize: 12, color: Color(0xFF765D64)),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xFF765D64),
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      Icon(Icons.arrow_forward_ios, size: 16, color: Color(0xFFA1304B)),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16,
+                        color: Color(0xFFA1304B),
+                      ),
                     ],
                   ),
                 ),
@@ -319,7 +344,13 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
   String _selectedMood = '😊 Calm';
   final List<Map<String, String>> _savedEntries = [];
 
-  final List<String> _moods = ['😊 Calm', '😌 Relaxed', '🌧️ Overwhelmed', '⚡ Anxious', '💪 Strong'];
+  final List<String> _moods = [
+    '😊 Calm',
+    '😌 Relaxed',
+    '🌧️ Overwhelmed',
+    '⚡ Anxious',
+    '💪 Strong',
+  ];
 
   @override
   void dispose() {
@@ -357,7 +388,11 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
             children: [
               const Text(
                 'How are you feeling right now?',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Color(0xFF1E3354)),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF1E3354),
+                ),
               ),
               const SizedBox(height: 10),
               SingleChildScrollView(
@@ -413,7 +448,11 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
               const SizedBox(height: 20),
               const Text(
                 'Recent Entries',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Color(0xFF1E3354)),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF1E3354),
+                ),
               ),
               const SizedBox(height: 10),
               Expanded(
@@ -436,15 +475,22 @@ class _MoodJournalScreenState extends State<MoodJournalScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         entry['mood']!,
-                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
                                       ),
                                       Text(
                                         entry['time']!,
-                                        style: const TextStyle(color: Colors.grey, fontSize: 12),
+                                        style: const TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 12,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -497,9 +543,9 @@ class ScenerySpotsScreen extends StatelessWidget {
     ),
     SunsetSpot(
       title: 'Ha Pak Nai',
-      location: 'Lau Fau Shan, Yuen Long',
+      location: 'Lau Fau Shan',
       description: 'Famous sunset spot known as the "Mirror of the Sky" with stunning tidal flats and reflections.',
-      bestTime: '1 hour before sunset (Low tide preferred)',
+      bestTime: '1 hour before sunset',
       icon: Icons.wb_sunny_rounded,
     ),
     SunsetSpot(
@@ -562,7 +608,11 @@ class ScenerySpotsScreen extends StatelessWidget {
                       color: const Color(0xFFF6DCE4),
                       borderRadius: BorderRadius.circular(14),
                     ),
-                    child: Icon(spot.icon, color: const Color(0xFFA1304B), size: 28),
+                    child: Icon(
+                      spot.icon,
+                      color: const Color(0xFFA1304B),
+                      size: 28,
+                    ),
                   ),
                   const SizedBox(width: 14),
                   Expanded(
@@ -580,7 +630,11 @@ class ScenerySpotsScreen extends StatelessWidget {
                         const SizedBox(height: 4),
                         Row(
                           children: [
-                            const Icon(Icons.place, size: 14, color: Color(0xFFA1304B)),
+                            const Icon(
+                              Icons.place,
+                              size: 14,
+                              color: Color(0xFFA1304B),
+                            ),
                             const SizedBox(width: 4),
                             Text(
                               spot.location,
@@ -591,7 +645,11 @@ class ScenerySpotsScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 12),
-                            const Icon(Icons.access_time, size: 14, color: Color(0xFF765D64)),
+                            const Icon(
+                              Icons.access_time,
+                              size: 14,
+                              color: Color(0xFF765D64),
+                            ),
                             const SizedBox(width: 4),
                             Text(
                               spot.bestTime,
@@ -644,7 +702,7 @@ class SelectNeedScreen extends StatelessWidget {
         'lighting is too intense',
       ),
       (
-        _needLabel('Too crowded'),
+        _needLabel('I am tired'),
         const Color(0xFF77C4B6),
         'too much stimulation around me',
       ),
@@ -749,7 +807,9 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
     super.initState();
     _quoteTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
       setState(() {
-        _currentQuoteIndex = (_currentQuoteIndex + 1) % EncouragementNotificationManager.encouragementSentences.length;
+        _currentQuoteIndex =
+            (_currentQuoteIndex + 1) %
+            EncouragementNotificationManager.encouragementSentences.length;
       });
     });
   }
@@ -768,7 +828,8 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
       'Brown noise playing',
     ];
 
-    final currentQuote = EncouragementNotificationManager.encouragementSentences[_currentQuoteIndex];
+    final currentQuote = EncouragementNotificationManager
+        .encouragementSentences[_currentQuoteIndex];
 
     return Scaffold(
       appBar: AppBar(
@@ -791,13 +852,16 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              
+
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 600),
                 child: Container(
                   key: ValueKey<int>(_currentQuoteIndex),
                   width: double.infinity,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 14,
+                  ),
                   decoration: BoxDecoration(
                     color: const Color(0xFFF0F4FF),
                     borderRadius: BorderRadius.circular(16),
@@ -805,7 +869,11 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.auto_awesome, color: Color(0xFF5669D9), size: 20),
+                      const Icon(
+                        Icons.auto_awesome,
+                        color: Color(0xFF5669D9),
+                        size: 20,
+                      ),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
@@ -822,7 +890,7 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              
+
               const _MiniTaskWidget(),
               const SizedBox(height: 20),
               Container(
@@ -869,6 +937,18 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
                   ],
                 ),
               ),
+              const SizedBox(height: 16),
+              OutlinedButton.icon(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        SosAiAnalysisScreen(selectedNeed: widget.need),
+                  ),
+                ),
+                icon: const Icon(Icons.auto_awesome),
+                label: const Text('Personalise support with AI'),
+              ),
               const Spacer(),
               SizedBox(
                 width: double.infinity,
@@ -890,6 +970,266 @@ class _CalmModeScreenState extends State<CalmModeScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class SosAiAnalysisScreen extends StatefulWidget {
+  const SosAiAnalysisScreen({
+    super.key,
+    required this.selectedNeed,
+    this.service,
+  });
+
+  final String selectedNeed;
+  final SosAiService? service;
+
+  @override
+  State<SosAiAnalysisScreen> createState() => _SosAiAnalysisScreenState();
+}
+
+class _SosAiAnalysisScreenState extends State<SosAiAnalysisScreen> {
+  late final TextEditingController _noteController;
+  late final SosAiService _service;
+  SosAiAnalysis? _analysis;
+  String? _error;
+  bool _loading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _noteController = TextEditingController();
+    _service =
+        widget.service ??
+        SosAiService(
+          baseUrl: const String.fromEnvironment(
+            'SOS_AI_BASE_URL',
+            defaultValue: 'http://127.0.0.1:8080',
+          ),
+        );
+  }
+
+  @override
+  void dispose() {
+    _noteController.dispose();
+    if (widget.service == null) {
+      _service.dispose();
+    }
+    super.dispose();
+  }
+
+  Future<void> _analyse() async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    setState(() {
+      _loading = true;
+      _error = null;
+      _analysis = null;
+    });
+
+    try {
+      final result = await _service.analyse(
+        note: _noteController.text,
+        selectedNeed: widget.selectedNeed,
+        preferences: const {
+          'preferredLighting': 'warm and dim',
+          'preferredSound': 'quiet',
+          'permittedAdjustments': [
+            'dim_lights',
+            'warm_lights',
+            'lower_media_volume',
+            'give_space',
+            'no_change',
+          ],
+        },
+      );
+      if (!mounted) return;
+      setState(() => _analysis = result);
+    } catch (error) {
+      if (!mounted) return;
+      setState(() => _error = error.toString());
+    } finally {
+      if (mounted) {
+        setState(() => _loading = false);
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: const BackButton(),
+        title: const Text('Personalised Support'),
+      ),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            const Text(
+              'Share what you or a caregiver noticed. The AI will summarise the report and suggest options for review.',
+              style: TextStyle(fontSize: 17, color: Color(0xFF4A5772)),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Selected need: ${widget.selectedNeed}',
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF1E3354),
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _noteController,
+              maxLines: 5,
+              maxLength: 2000,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Example: The caregiver reports that loud kitchen sounds are uncomfortable.',
+                labelText: 'User or caregiver note',
+              ),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: _loading ? null : _analyse,
+                icon: _loading
+                    ? const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.auto_awesome),
+                label: Text(
+                  _loading ? 'Analysing...' : 'Analyse support needs',
+                ),
+              ),
+            ),
+            if (_error != null) ...[
+              const SizedBox(height: 16),
+              _AnalysisMessage(
+                icon: Icons.info_outline,
+                message:
+                    'AI suggestions are unavailable. Your existing support plan remains available.\n$_error',
+              ),
+            ],
+            if (_analysis != null) ...[
+              const SizedBox(height: 20),
+              _AnalysisResultCard(analysis: _analysis!),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _AnalysisMessage extends StatelessWidget {
+  const _AnalysisMessage({required this.icon, required this.message});
+
+  final IconData icon;
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: const Color(0xFFFFF4E5),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, color: const Color(0xFF9A6412)),
+            const SizedBox(width: 10),
+            Expanded(child: Text(message)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _AnalysisResultCard extends StatelessWidget {
+  const _AnalysisResultCard({required this.analysis});
+
+  final SosAiAnalysis analysis;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.auto_awesome, color: Color(0xFF5669D9)),
+                SizedBox(width: 8),
+                Text(
+                  'AI Support Summary',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w800,
+                    color: Color(0xFF1E3354),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(analysis.summary),
+            const SizedBox(height: 14),
+            _AnalysisSection(
+              title: 'Reported triggers',
+              values: analysis.reportedTriggers,
+            ),
+            _AnalysisSection(
+              title: 'Suggested adjustments for review',
+              values: analysis.suggestedAdjustments
+                  .map((action) => action.replaceAll('_', ' '))
+                  .toList(),
+            ),
+            const SizedBox(height: 8),
+            Text('Context: ${analysis.contextSummary}'),
+            const SizedBox(height: 8),
+            Text('Caregiver guidance: ${analysis.caregiverMessage}'),
+            const SizedBox(height: 8),
+            Text('Uncertainty: ${analysis.uncertainty}'),
+            const SizedBox(height: 12),
+            const Text(
+              'No device changes were made. Review these suggestions before taking action.',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Color(0xFFA1304B),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _AnalysisSection extends StatelessWidget {
+  const _AnalysisSection({required this.title, required this.values});
+
+  final String title;
+  final List<String> values;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
+          if (values.isEmpty)
+            const Text('None reported')
+          else
+            ...values.map((value) => Text('• $value')),
+        ],
       ),
     );
   }
@@ -1027,7 +1367,11 @@ class _RandomMiniTaskScreen extends StatelessWidget {
                   color: Color(0xFFEAF1FF),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(task.icon, size: 54, color: const Color(0xFF5669D9)),
+                child: Icon(
+                  task.icon,
+                  size: 54,
+                  color: const Color(0xFF5669D9),
+                ),
               ),
               const SizedBox(height: 24),
               Text(
